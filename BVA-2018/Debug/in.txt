@@ -1,0 +1,17 @@
+main
+{
+ declare float a = 5.0;
+ declare float b = 2.0;
+ declare float x = 0.1;
+ out a;
+ out b;
+ if (a > b) {
+  x = a*a*a;
+ }
+ 
+ out x;
+}
+
+
+
+

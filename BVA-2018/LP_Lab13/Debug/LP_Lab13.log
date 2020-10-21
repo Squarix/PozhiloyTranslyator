@@ -1,0 +1,13 @@
+﻿  MFST.cpp
+G:\3 сем\ЯП\14\BVA-2018\LP_Lab13\MFST.cpp(202,123): warning C4474: "sprintf_s" : для строки формата передано слишком много аргументов
+G:\3 сем\ЯП\14\BVA-2018\LP_Lab13\MFST.cpp(202,123): message : заполнители и их параметры ожидают переменное число аргументов в количестве 1, но было предоставлено 2
+G:\3 сем\ЯП\14\BVA-2018\LP_Lab13\MFST.cpp(230,31): error C2039: "_Get_container": не является членом "std::stack<short,std::deque<short,std::allocator<short>>>".
+G:\3 сем\ЯП\14\BVA-2018\LP_Lab13\MFST.h(13): message : см. объявление "std::stack<short,std::deque<short,std::allocator<short>>>"
+G:\3 сем\ЯП\14\BVA-2018\LP_Lab13\MFST.cpp(268,37): error C2039: "_Get_container": не является членом "std::stack<MFST::MfstState,std::deque<MFST::MfstState,std::allocator<MFST::MfstState>>>".
+G:\3 сем\ЯП\14\BVA-2018\LP_Lab13\MFST.h(76): message : см. объявление "std::stack<MFST::MfstState,std::deque<MFST::MfstState,std::allocator<MFST::MfstState>>>"
+G:\3 сем\ЯП\14\BVA-2018\LP_Lab13\MFST.cpp(279,68): warning C4267: =: преобразование из "size_t" в "short"; возможна потеря данных
+G:\3 сем\ЯП\14\BVA-2018\LP_Lab13\MFST.cpp(283,37): error C2039: "_Get_container": не является членом "std::stack<MFST::MfstState,std::deque<MFST::MfstState,std::allocator<MFST::MfstState>>>".
+G:\3 сем\ЯП\14\BVA-2018\LP_Lab13\MFST.h(76): message : см. объявление "std::stack<MFST::MfstState,std::deque<MFST::MfstState,std::allocator<MFST::MfstState>>>"
+  Parm.cpp
+  Semantic.h
+  Создание кода...

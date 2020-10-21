@@ -1,0 +1,7 @@
+﻿  Assembling ..\..\BVA-2018\LP_Lab13\out.asm...
+..\..\BVA-2018\LP_Lab13\out.asm(58): warning A6004: procedure argument or local not referenced : fia
+LINK : warning LNK4075: не учитывается "/INCREMENTAL" из-за спецификации "/FORCE"
+ucrtd.lib(ucrtbased.dll) : warning LNK4006: __invalid_parameter уже определен в libucrt.lib(invalid_parameter.obj); второе определение пропущено
+LINK : warning LNK4098: библиотека по умолчанию "libucrt.lib" противоречит использованию других библиотек; используйте параметр /NODEFAULTLIB:library
+E:\3 сем\ЯП\14\BVAasm\Debug\BVAasm.exe : warning LNK4088: образ создается из-за параметра /FORCE; образ нельзя запустить
+  BVAasm.vcxproj -> E:\3 сем\ЯП\14\BVAasm\Debug\BVAasm.exe

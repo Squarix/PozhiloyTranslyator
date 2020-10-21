@@ -1,0 +1,44 @@
+declare float flvar;
+ declare float q = msin(2.0);
+ out q;
+ declare int d = fi(1);
+ out d;
+ declare str string = 'Kursach kruto' ;
+ out string;
+ declare int e = 11;
+ out e;
+ if (e > 10) {
+   out 'e above 10';
+ }
+ 
+ while (e > 8) {
+   out 'e still belowe 10';
+   e = e - 1;
+ }
+ 
+ declare int f = 1 * (2 + 3);
+ out f;
+ f =  4 * (0-2);
+ out f;
+
+ declare float g = 1.0 + 1.1 * 1.0;
+ out g;
+ if (g = 2.1) {
+   out 'g is equal to 2and1'; 
+ }
+ declare int h = stdlen(string);
+ out h;
+ declare float k = mln(2.2);
+ out k;
+ declare float l = msqr(4.0);
+ out l;
+ declare float m = mtan(3.5);
+ out m;
+
+
+
+int function fi(int a)
+{
+  declare int b = 2 + 4 / 2; 
+  return b;
+}

@@ -1,0 +1,328 @@
+Microsoft (R) Macro Assembler Version 14.15.26726.0	    12/17/18 03:48:14
+outino.asm						     Page 1 - 1
+
+
+				.586
+					.model FLAT, C , stdcall
+					includelib kernel32.lib
+					includelib libucrt.lib
+					includelib E:\ßÏ\14\BVAasm\BVAasm\DefaultLib\default_lib.lib
+					ExitProcess PROTO :DWORD
+
+				stdlen PROTO :WORD
+				strsearch PROTO :WORD
+				mabs PROTO :DWORD
+				dgr PROTO :DWORD, :DWORD
+				print1 PROTO :DWORD
+				mcos PROTO :DWORD 
+				mexp PROTO :DWORD
+				mln PROTO :DWORD
+				msin PROTO :DWORD
+				msqr PROTO :DWORD
+				mtan PROTO :DWORD
+				print2 PROTO :WORD
+				print3 PROTO :DWORD	
+				;EXTRN stdlen : proto
+				;EXTRN strsearch
+
+				.stack 4096
+ 00000000			.const
+ 00000000 00000001			L0		REAL4	1.4013e-45
+ 00000004 00000001			L1		REAL4	1.4013e-45
+ 00000008 00000002			L2		REAL4	2.8026e-45
+ 0000000C 00000001			L3		REAL4	1.4013e-45
+ 00000010 4B 75 72 73 61		L4		BYTE	"Kursach kruto", 0
+	   63 68 20 6B 72
+	   75 74 6F 00
+ 0000001E 0000000B			L5		DWORD	11
+ 00000022 0000000A			L6		DWORD	10
+ 00000026 65 20 65 71 20		L7		BYTE	"e eq 10",0
+	   31 30 00
+ 0000002E 0000000A			L8		DWORD	10
+ 00000032 65 20 73 74 69		L9		BYTE	"e still belowe 10",0
+	   6C 6C 20 62 65
+	   6C 6F 77 65 20
+	   31 30 00
+ 00000044 00000001			L10		DWORD	1
+ 00000048 00000001			L11		DWORD	1
+ 0000004C 00000002			L12		DWORD	2
+ 00000050 00000003			L13		DWORD	3
+ 00000054 00000001			L14		DWORD	1
+ 00000058 00000002			L15		DWORD	2
+ 0000005C 00000003			L16		DWORD	3
+ 00000060 00000001			L17		REAL4	1.4013e-45
+ 00000064 00000001			L18		REAL4	1.4013e-45
+ 00000068 00000001			L19		REAL4	1.4013e-45
+ 0000006C 00000002			L20		REAL4	2.8026e-45
+ 00000070 31 67 20 69 73		L21		BYTE	"1g is equal to 2and1",0
+	   20 65 71 75 61
+	   6C 20 74 6F 20
+	   32 61 6E 64 31
+	   00
+ 00000085 00000001			L22		REAL4	1.4013e-45
+ 00000089 00000002			L23		REAL4	2.8026e-45
+ 0000008D 00000004			L24		REAL4	5.60519e-45
+ 00000091 00000003			L25		REAL4	4.2039e-45
+ 00000000			.data
+ 00000000 00000000			b		REAL4	?
+ 00000004 00000000			flvar		REAL4	?
+ 00000008 00000000			ca		REAL4	?
+ 0000000C 00000000			d		REAL4	?
+ 00000010 0000				string		WORD	?
+ 00000012 00000000			e		DWORD	?
+ 00000016 00000000			f		DWORD	?
+ 0000001A 00000000			g		REAL4	?
+ 0000001E 00000000			h		DWORD	?
+ 00000022 00000000			j		REAL4	?
+ 00000026 00000000			k		REAL4	?
+ 0000002A 00000000			l		REAL4	?
+ 0000002E 00000000			m		REAL4	?
+ 00000000			.code
+ 00000000			fi PROC	 a : REAL4
+ 00000003  D9 05 00000000 R		FLD	L0
+ 00000009  D9 05 00000004 R		FLD	L1
+ 0000000F  DE C1			FADDP 
+ 00000011  D9 1D 00000000 R		FSTP b
+ 00000017  B8 00000000 R		MOV EAX, OFFSET b
+					ret
+ 00000020			fi ENDP
+outino.asm(74) : warning A6004:procedure argument or local not referenced : a
+ 00000020			main PROC
+ 00000020  D9 05 00000008 R		FLD	L2
+ 00000026  E8 00000000 E		call msin
+ 0000002B  50				PUSH EAX
+ 0000002C  D9 1D 00000008 R		FSTP ca
+ 00000032  D9 05 00000008 R		FLD	ca
+ 00000038  E8 00000000 E		call print3
+ 0000003D  D9 05 0000000C R		FLD	L3
+ 00000043  E8 FFFFFFB8			call fi
+ 00000048  50				PUSH EAX
+ 00000049  D9 1D 0000000C R		FSTP d
+ 0000004F  D9 05 0000000C R		FLD	d
+ 00000055  E8 00000000 E		call print3
+ 0000005A  68 00000010 R		PUSH OFFSET	L4
+ 0000005F  66| 8F 05			POP string
+	   00000010 R
+ 00000066  68 00000010 R		PUSH OFFSET	string
+ 0000006B  E8 00000000 E		call print2
+ 00000070  FF 35 0000001E R		PUSH	L5
+ 00000076  58				POP	EAX
+ 00000077  A3 00000012 R		MOV	e, EAX
+ 0000007C  FF 35 00000012 R		PUSH	e
+ 00000082  E8 00000000 E		call print1
+ 00000087  A1 00000012 R		MOV EAX, e
+ 0000008C  83 F8 06			cmp EAX, 6
+ 0000008F  77 04			ja if0
+ 00000091  74 0C			je ifend0
+ 00000093  72 0A			jb ifend0
+ 00000095				if0:
+ 00000095  68 00000026 R		PUSH OFFSET	L7
+ 0000009A  E8 00000000 E		call print2
+ 0000009F			ifend0:
+ 0000009F			while0:
+ 0000009F  A1 00000012 R		MOV EAX, e
+ 000000A4  83 F8 08			cmp EAX, 8
+ 000000A7  77 04			ja whileblock0
+ 000000A9  74 25			je whilend0
+ 000000AB  72 23			jb whilend0
+ 000000AD			whileblock0:
+ 000000AD  68 00000032 R		PUSH OFFSET	L9
+ 000000B2  E8 00000000 E		call print2
+ 000000B7  FF 35 00000012 R		PUSH	e
+ 000000BD  FF 35 00000044 R		PUSH	L10
+ 000000C3  5A				POP	 EDX
+ 000000C4  5B				POP	 EBX
+ 000000C5  2B DA			SUB	 EBX, EDX
+ 000000C7  53				PUSH	 EBX
+ 000000C8  58				POP	EAX
+ 000000C9  A3 00000012 R		MOV	e, EAX
+ 000000CE  E2 CF			loop while0
+ 000000D0			whilend0:
+ 000000D0  FF 35 00000048 R		PUSH	L11
+ 000000D6  FF 35 0000004C R		PUSH	L12
+ 000000DC  FF 35 00000050 R		PUSH	L13
+ 000000E2  5A				POP	 EDX
+ 000000E3  5B				POP	 EBX
+ 000000E4  03 DA			ADD	 EBX, EDX
+ 000000E6  53				PUSH	 EBX
+ 000000E7  5B				POP	 EBX
+ 000000E8  58				POP	 EAX
+ 000000E9  BA 00000000			MOV	 EDX, 0
+ 000000EE  F7 E3			MUL	 EBX
+ 000000F0  8B D8			MOV	 EBX, EAX
+ 000000F2  50				PUSH	 EAX
+ 000000F3  58				POP	EAX
+ 000000F4  A3 00000016 R		MOV	f, EAX
+ 000000F9  FF 35 00000016 R		PUSH	f
+ 000000FF  E8 00000000 E		call print1
+ 00000104  FF 35 00000054 R		PUSH	L14
+ 0000010A  FF 35 00000058 R		PUSH	L15
+ 00000110  FF 35 0000005C R		PUSH	L16
+ 00000116  5B				POP	 EBX
+ 00000117  58				POP	 EAX
+ 00000118  BA 00000000			MOV	 EDX, 0
+ 0000011D  F7 E3			MUL	 EBX
+ 0000011F  8B D8			MOV	 EBX, EAX
+ 00000121  50				PUSH	 EAX
+ 00000122  5A				POP	 EDX
+ 00000123  5B				POP	 EBX
+ 00000124  03 DA			ADD	 EBX, EDX
+ 00000126  53				PUSH	 EBX
+ 00000127  58				POP	EAX
+ 00000128  A3 00000016 R		MOV	f, EAX
+ 0000012D  FF 35 00000016 R		PUSH	f
+ 00000133  E8 00000000 E		call print1
+ 00000138  D9 05 00000060 R		FLD	L17
+ 0000013E  D9 05 00000064 R		FLD	L18
+ 00000144  D9 05 00000068 R		FLD	L19
+ 0000014A  DE C9			FMUL 
+ 0000014C  DE C1			FADDP 
+ 0000014E  D9 1D 0000001A R		FSTP g
+ 00000154  D9 05 0000001A R		FLD	g
+ 0000015A  E8 00000000 E		call print3
+ 0000015F  A1 0000001A R		MOV EAX, g
+ 00000164  83 F8 14			cmp EAX, 20
+ 00000167  74 04			je if02
+ 00000169  77 0C			ja ifend2
+ 0000016B  72 0A			jb ifend2
+ 0000016D			if02:
+ 0000016D  68 00000070 R		PUSH OFFSET	L21
+ 00000172  E8 00000000 E		call print2
+ 00000177			ifend2:
+ 00000177  68 00000010 R		PUSH OFFSET	string
+ 0000017C  E8 00000000 E		call stdlen
+ 00000181  50				PUSH EAX
+ 00000182  58				POP	EAX
+ 00000183  A3 0000001E R		MOV	h, EAX
+ 00000188  FF 35 0000001E R		PUSH	h
+ 0000018E  E8 00000000 E		call print1
+ 00000193  D9 05 00000085 R		FLD	L22
+ 00000199  E8 00000000 E		call mabs
+ 0000019E  50				PUSH EAX
+ 0000019F  D9 1D 00000022 R		FSTP j
+ 000001A5  D9 05 00000022 R		FLD	j
+ 000001AB  E8 00000000 E		call print3
+ 000001B0  D9 05 00000089 R		FLD	L23
+ 000001B6  E8 00000000 E		call mln
+ 000001BB  50				PUSH EAX
+ 000001BC  D9 1D 00000026 R		FSTP k
+ 000001C2  D9 05 00000026 R		FLD	k
+ 000001C8  E8 00000000 E		call print3
+ 000001CD  D9 05 0000008D R		FLD	L24
+ 000001D3  E8 00000000 E		call msqr
+ 000001D8  50				PUSH EAX
+ 000001D9  D9 1D 0000002A R		FSTP l
+ 000001DF  D9 05 0000002A R		FLD	l
+ 000001E5  E8 00000000 E		call print3
+ 000001EA  D9 05 00000091 R		FLD	L25
+ 000001F0  E8 00000000 E		call mtan
+ 000001F5  50				PUSH EAX
+ 000001F6  D9 1D 0000002E R		FSTP m
+ 000001FC  D9 05 0000002E R		FLD	m
+ 00000202  E8 00000000 E		call print3
+ 00000207  6A 00			push 0
+ 00000209  E8 00000000 E		call ExitProcess
+ 0000020E			main ENDP
+				end main
+Microsoft (R) Macro Assembler Version 14.15.26726.0	    12/17/18 03:48:14
+outino.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CONST  . . . . . . . . . . . . .	32 Bit	 00000095 Para	  Public  'CONST'	 ReadOnly
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000032 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000020E Para	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+dgr  . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+fi . . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000020 Public STDCALL
+  a  . . . . . . . . . . . . . .	DWord	 bp + 00000008
+mabs . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000020 _TEXT	Length= 000001EE Public STDCALL
+  if0  . . . . . . . . . . . . .	L Near	 00000095 _TEXT	
+  ifend0 . . . . . . . . . . . .	L Near	 0000009F _TEXT	
+  while0 . . . . . . . . . . . .	L Near	 0000009F _TEXT	
+  whileblock0  . . . . . . . . .	L Near	 000000AD _TEXT	
+  whilend0 . . . . . . . . . . .	L Near	 000000D0 _TEXT	
+  if02 . . . . . . . . . . . . .	L Near	 0000016D _TEXT	
+  ifend2 . . . . . . . . . . . .	L Near	 00000177 _TEXT	
+mcos . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+mexp . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+mln  . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+msin . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+msqr . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+mtan . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+print1 . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+print2 . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+print3 . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+stdlen . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+strsearch  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+L0 . . . . . . . . . . . . . . .	DWord	 00000000 CONST	
+L10  . . . . . . . . . . . . . .	DWord	 00000044 CONST	
+L11  . . . . . . . . . . . . . .	DWord	 00000048 CONST	
+L12  . . . . . . . . . . . . . .	DWord	 0000004C CONST	
+L13  . . . . . . . . . . . . . .	DWord	 00000050 CONST	
+L14  . . . . . . . . . . . . . .	DWord	 00000054 CONST	
+L15  . . . . . . . . . . . . . .	DWord	 00000058 CONST	
+L16  . . . . . . . . . . . . . .	DWord	 0000005C CONST	
+L17  . . . . . . . . . . . . . .	DWord	 00000060 CONST	
+L18  . . . . . . . . . . . . . .	DWord	 00000064 CONST	
+L19  . . . . . . . . . . . . . .	DWord	 00000068 CONST	
+L1 . . . . . . . . . . . . . . .	DWord	 00000004 CONST	
+L20  . . . . . . . . . . . . . .	DWord	 0000006C CONST	
+L21  . . . . . . . . . . . . . .	Byte	 00000070 CONST	
+L22  . . . . . . . . . . . . . .	DWord	 00000085 CONST	
+L23  . . . . . . . . . . . . . .	DWord	 00000089 CONST	
+L24  . . . . . . . . . . . . . .	DWord	 0000008D CONST	
+L25  . . . . . . . . . . . . . .	DWord	 00000091 CONST	
+L2 . . . . . . . . . . . . . . .	DWord	 00000008 CONST	
+L3 . . . . . . . . . . . . . . .	DWord	 0000000C CONST	
+L4 . . . . . . . . . . . . . . .	Byte	 00000010 CONST	
+L5 . . . . . . . . . . . . . . .	DWord	 0000001E CONST	
+L6 . . . . . . . . . . . . . . .	DWord	 00000022 CONST	
+L7 . . . . . . . . . . . . . . .	Byte	 00000026 CONST	
+L8 . . . . . . . . . . . . . . .	DWord	 0000002E CONST	
+L9 . . . . . . . . . . . . . . .	Byte	 00000032 CONST	
+b  . . . . . . . . . . . . . . .	DWord	 00000000 _DATA	
+ca . . . . . . . . . . . . . . .	DWord	 00000008 _DATA	
+d  . . . . . . . . . . . . . . .	DWord	 0000000C _DATA	
+e  . . . . . . . . . . . . . . .	DWord	 00000012 _DATA	
+flvar  . . . . . . . . . . . . .	DWord	 00000004 _DATA	
+f  . . . . . . . . . . . . . . .	DWord	 00000016 _DATA	
+g  . . . . . . . . . . . . . . .	DWord	 0000001A _DATA	
+h  . . . . . . . . . . . . . . .	DWord	 0000001E _DATA	
+j  . . . . . . . . . . . . . . .	DWord	 00000022 _DATA	
+k  . . . . . . . . . . . . . . .	DWord	 00000026 _DATA	
+l  . . . . . . . . . . . . . . .	DWord	 0000002A _DATA	
+m  . . . . . . . . . . . . . . .	DWord	 0000002E _DATA	
+string . . . . . . . . . . . . .	Word	 00000010 _DATA	
+
+	   1 Warnings
+	   0 Errors
